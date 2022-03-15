@@ -1,20 +1,15 @@
 import "./App.css";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Navigate } from "react-router-dom";
+import Home from "./pages/Home";
 
 function App() {
-  const [listOfArticles, setListOfArticles] = useState([]);
-
-  useEffect(() => {
-    axios.get("http://localhost:8080/articles").then((response) => {
-      setListOfArticles(response.data);
-    });
-  }, []);
   return (
     <div className="App">
-      {listOfArticles.map((value, key) => {
-        return <div>{value.name}</div>;
-      })}
+      <Router>
+        <Navigate>
+          <Route path="/" exact component={Home} />
+        </Navigate>
+      </Router>
     </div>
   );
 }
